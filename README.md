@@ -1,28 +1,19 @@
-== README
+# Apipie
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### First steps
 
-Things you may want to cover:
+Add [apipie](https://github.com/Apipie/apipie-rails) to your Gemfile
 
-* Ruby version
+```ruby
+  gem ‘apipie-rails’
+```
 
-* System dependencies
+And then...
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+cd your_app
+bundle install
+rails g apipie:install
+```
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
