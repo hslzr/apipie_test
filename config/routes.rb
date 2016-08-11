@@ -7,5 +7,10 @@ Rails.application.routes.draw do
     end
     resources :tasks, only: [:index, :show]
   end
-  resources :users
+  resources :users do
+    collection do
+      get 'born_in_september' 
+      get 'adults'
+    end
+  end
 end

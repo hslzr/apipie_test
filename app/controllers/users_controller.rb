@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   layout false
 
+  api! 'Index method. Not much to say, rly'
   def index
     render json: User.all, status: 200
   end
@@ -35,6 +36,21 @@ class UsersController < ApplicationController
   def destroy
     User.find_by(id: params[:id]).destroy
     head 204
+  end
+
+  api! 'Only users who are old enough to party'
+  # param :please, String, desc: 'Be nice', required: true
+  param :manners, lambda { |value|
+    value == 'please' ? true : "Be nice"
+  }, required: true
+  def adults
+    users = User.where("age >= 18")
+    render json: users, status: 200
+  end
+
+  def born_in_september
+    users = User.find_by_month(9)
+    render json: users, status: 200
   end
 
   private
