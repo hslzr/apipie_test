@@ -60,7 +60,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     Project.find(params[:id]).destroy
     head 204
   end

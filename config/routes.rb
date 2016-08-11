@@ -7,4 +7,5 @@ Rails.application.routes.draw do
     end
     resources :tasks, only: [:index, :show]
   end
+  resources :users
 end
