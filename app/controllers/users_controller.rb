@@ -1,6 +1,17 @@
 class UsersController < ApplicationController
   layout false
 
+  def_param_group :user do
+    param :user, Hash, desc: 'User\'s params', required: true do
+      param :name, String, desc: 'Name', required: true
+      param :age, lambda { |value| !!(value =~ /\A\d+\z/) }, 
+            desc: 'Must be an integer',
+            required: true
+      param :occupation, String, desc: 'User\'s occupation', required: true
+      param :birthdate, Date, desc: 'User\'s birthdate'
+    end
+  end
+
   api! 'Index method. Not much to say, rly'
   def index
     render json: User.all, status: 200
@@ -35,6 +46,9 @@ class UsersController < ApplicationController
     end
   end
 
+  api! 'Updates user'
+  param :id, String, desc: 'User\'s ID'
+  param_group :user
   def update
     user = User.find_by(id: params[:id])
     if user.update(user_params)
