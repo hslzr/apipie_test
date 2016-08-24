@@ -8,7 +8,7 @@ class UsersController < ApplicationController
             desc: 'Must be an integer',
             required: true
       param :occupation, String, desc: 'User\'s occupation', required: true
-      param :birthdate, Date, desc: 'User\'s birthdate'
+      param :birthdate, String, desc: 'User\'s birthdate'
     end
   end
 
@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   end
 
   api! 'Creates user'
+  error code: 422, desc: 'Unprocessable entity'
   param :user, Hash, desc: 'User\'s params', required: true do
     param :name, String, desc: 'Name', required: true
     param :age, lambda { |value| !!(value =~ /\A\d+\z/) }, 

@@ -2,14 +2,18 @@ class ProjectsController < ApplicationController
   layout false
 
   api! 'Get all projects'
+  formats ['json', 'jsonp']
+
   def index
     render json: Project.all, status: 200
   end
 
   api! 'Project show'
   error code: 404, desc: 'Project not found'
+  error code: 422, desc: 'You broke something'
+  error code: 500, desc: 'We broke something'
   formats ['json', 'jsonp']
-  meta message: 'Something meta?'
+  meta message: 'Something meta? I\'m not sure, sorry'
   example "
   project: {
     'id': 1,
